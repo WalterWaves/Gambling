@@ -13,7 +13,7 @@ public class Double implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
 		if (label.equalsIgnoreCase("double")) {
-			if (args.length == 2 && (args[1].equalsIgnoreCase("under") || args[1].equalsIgnoreCase("over"))) {
+			if (args.length == 2 && Integer.parseInt(args[0]) > 0 && (args[1].equalsIgnoreCase("under") || args[1].equalsIgnoreCase("over"))) {
 				if ((int) Main.data.getConfig().get(player.getName() + ".Credits") >= Integer.parseInt(args[0])) {
 					Main.data.getConfig().set(player.getName() + ".Credits",
 							(int) Main.data.getConfig().get(player.getName() + ".Credits") - Integer.parseInt(args[0]));
