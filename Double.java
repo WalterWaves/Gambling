@@ -1,6 +1,7 @@
 package me.WalterWaves.Gambling;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -19,29 +20,35 @@ public class Double implements CommandExecutor {
 					Main.data.saveConfig();
 					player.sendMessage(ChatColor.GREEN + "✔ Purchase Successful! Bet: " + args[0] + " Credits.");
 					if (args[1].equalsIgnoreCase("under")) {
-						if (Main.random(2) == 0) {
+						int random = Main.random(100);
+						if (random < 50) {
 							Main.data.getConfig().set(player.getName() + ".Credits",
 									(int) Main.data.getConfig().get(player.getName() + ".Credits")
 											+ Integer.parseInt(args[0]) * 2);
 							Main.data.saveConfig();
 							player.sendMessage(ChatColor.GREEN + "✔ You Won! New Balance: "
-									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
+									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits. Roll: " + random + ".");
+							player.playSound(player, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
 						} else {
 							player.sendMessage(ChatColor.RED + "❌ You Lost! Balance: "
-									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
+									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits. Roll: " + random + ".");
+							player.playSound(player, Sound.BLOCK_ANVIL_DESTROY, 1f, 1f);
 						}
 					}
 					if (args[1].equalsIgnoreCase("over")) {
-						if (Main.random(2) == 1) {
+						int random = Main.random(100);
+						if (random >= 50) {
 							Main.data.getConfig().set(player.getName() + ".Credits",
 									(int) Main.data.getConfig().get(player.getName() + ".Credits")
 											+ Integer.parseInt(args[0]) * 2);
 							Main.data.saveConfig();
 							player.sendMessage(ChatColor.GREEN + "✔ You Won! New Balance: "
-									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
+									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits. Roll: " + random + ".");
+							player.playSound(player, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
 						} else {
 							player.sendMessage(ChatColor.RED + "❌ You Lost! Balance: "
-									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
+									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits. Roll: " + random + ".");
+							player.playSound(player, Sound.BLOCK_ANVIL_DESTROY, 1f, 1f);
 						}
 					}
 				} else {

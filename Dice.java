@@ -1,6 +1,7 @@
 package me.WalterWaves.Gambling;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -44,9 +45,11 @@ public class Dice implements CommandExecutor {
 						Main.data.saveConfig();
 						player.sendMessage(ChatColor.GREEN + "✔ You Won! New Balance: "
 								+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
+						player.playSound(player, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
 					} else {
 						player.sendMessage(ChatColor.RED + "❌ You Lost! Balance: "
 								+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
+						player.playSound(player, Sound.BLOCK_ANVIL_DESTROY, 1f, 1f);
 					}
 				} else {
 					player.sendMessage(ChatColor.RED + "⚠ Not Enough Credits! Balance: "
