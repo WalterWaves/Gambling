@@ -13,7 +13,7 @@ public class Dice implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
 		if (label.equalsIgnoreCase("dice")) {
-			if (args.length == 2 && Integer.parseInt(args[1]) <= 6) {
+			if (args.length == 2 && Integer.parseInt(args[1]) <= 6 && Integer.parseInt(args[0]) > 0) {
 				if ((int) Main.data.getConfig().get(player.getName() + ".Credits") >= Integer.parseInt(args[0])) {
 					Main.data.getConfig().set(player.getName() + ".Credits",
 							(int) Main.data.getConfig().get(player.getName() + ".Credits") - Integer.parseInt(args[0]));
