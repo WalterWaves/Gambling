@@ -13,12 +13,12 @@ public class Dice implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
 		if (label.equalsIgnoreCase("dice")) {
-			if (args.length == 2 && Integer.parseInt(args[0]) <= 6) {
-				if ((int) Main.data.getConfig().get(player.getName() + ".Credits") >= Integer.parseInt(args[1])) {
+			if (args.length == 2 && Integer.parseInt(args[1]) <= 6) {
+				if ((int) Main.data.getConfig().get(player.getName() + ".Credits") >= Integer.parseInt(args[0])) {
 					Main.data.getConfig().set(player.getName() + ".Credits",
-							(int) Main.data.getConfig().get(player.getName() + ".Credits") - Integer.parseInt(args[1]));
+							(int) Main.data.getConfig().get(player.getName() + ".Credits") - Integer.parseInt(args[0]));
 					Main.data.saveConfig();
-					player.sendMessage(ChatColor.GREEN + "✔ Purchase Successful! Bet: " + args[1] + " Credits.");
+					player.sendMessage(ChatColor.GREEN + "✔ Purchase Successful! Bet: " + args[0] + " Credits.");
 					int random = 1 + Main.random(6);
 					if (random == 1) {
 						player.sendMessage(ChatColor.GREEN + "⚀");
@@ -38,10 +38,10 @@ public class Dice implements CommandExecutor {
 					if (random == 6) {
 						player.sendMessage(ChatColor.GREEN + "⚅");
 					}
-					if (random == Integer.parseInt(args[0])) {
+					if (random == Integer.parseInt(args[1])) {
 						Main.data.getConfig().set(player.getName() + ".Credits",
 								(int) Main.data.getConfig().get(player.getName() + ".Credits")
-										+ Integer.parseInt(args[1]) * 6);
+										+ Integer.parseInt(args[0]) * 6);
 						Main.data.saveConfig();
 						player.sendMessage(ChatColor.GREEN + "✔ You Won! New Balance: "
 								+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
@@ -56,7 +56,7 @@ public class Dice implements CommandExecutor {
 							+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
 				}
 			} else {
-				player.sendMessage(ChatColor.RED + "⚠ Invalid Arguments! Usage: /dice <prediction (1-6)> <bet>");
+				player.sendMessage(ChatColor.RED + "⚠ Invalid Arguments! Usage: /dice <bet> <prediction (1-6)>");
 			}
 		}
 		return false;
