@@ -201,12 +201,12 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 				Main.data.saveConfig();
 				player.playSound(player, Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1f, 1f);
 				player.sendMessage(ChatColor.GREEN + "✔ Purchase Successful! New Balance: "
-						+ Main.data.getConfig().get(player.getName() + ".Credits") + ".");
+						+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
 				isSpinning.put(player.getName(), 1);
 				spinTime.put(player.getName(), 200 + Main.random(150));
 			} else {
 				player.sendMessage(ChatColor.RED + "⚠ Not Enough Credits! Balance: "
-						+ Main.data.getConfig().get(player.getName() + ".Credits") + ".");
+						+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
 			}
 		}
 		if (event.getCurrentItem() != null && isSpinning.get(player.getName()) == 0
@@ -218,12 +218,12 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 				Main.data.saveConfig();
 				player.playSound(player, Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1f, 1f);
 				player.sendMessage(ChatColor.GREEN + "✔ Purchase Successful! New Balance: "
-						+ Main.data.getConfig().get(player.getName() + ".Credits") + ".");
+						+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
 				isSpinning.put(player.getName(), 2);
 				spinTime.put(player.getName(), 200 + Main.random(150));
 			} else {
 				player.sendMessage(ChatColor.RED + "⚠ Not Enough Credits! Balance: "
-						+ Main.data.getConfig().get(player.getName() + ".Credits") + ".");
+						+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
 			}
 		}
 		for (ItemStack item : event.getInventory().getContents()) {
