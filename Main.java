@@ -18,8 +18,10 @@ public class Main extends JavaPlugin {
 		getCommand("credits").setExecutor(new Roulette());
 		getCommand("dice").setExecutor(new Dice());
 		getCommand("double").setExecutor(new Double());
+		getCommand("raffle").setExecutor(new Raffle());
 		getServer().getPluginManager().registerEvents(new Roulette(), this);
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Roulette(), 0, 1);
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Raffle(), 0, 20);
 		
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
 			public void run() {
