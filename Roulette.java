@@ -260,7 +260,7 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 				Main.logs.getConfig()
 						.set(player.getName() + "'s Logs" + ".Roulette" + "." + Main.formatter.format(Main.date)
 								+ ".TransactionID " + (Main.random(1000000) + 1000000),
-								"Spun for 100 Credits. Balance: "
+								"Spun for 5000 Credits. Balance: "
 										+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
 				Main.logs.saveConfig();
 				player.playSound(player, Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1f, 1f);
@@ -283,7 +283,7 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 				Main.logs.getConfig()
 						.set(player.getName() + "'s Logs" + ".Roulette" + "." + Main.formatter.format(Main.date)
 								+ ".TransactionID " + (Main.random(1000000) + 1000000),
-								"Spun for 100 Credits. Balance: "
+								"Spun for 5000 Credits. Balance: "
 										+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
 				Main.logs.saveConfig();
 				player.playSound(player, Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1f, 1f);
