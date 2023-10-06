@@ -16,7 +16,7 @@ public class Raffle implements CommandExecutor, Runnable {
 
 	private static Map<String, Integer> bets = new HashMap<String, Integer>();
 	private static Map<String, Float> chances = new HashMap<String, Float>();
-	private static int raffle_time = 120;
+	private static int raffle_time = 300;
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -48,6 +48,12 @@ public class Raffle implements CommandExecutor, Runnable {
 								(int) Main.data.getConfig().get(player.getName() + ".Credits")
 										- Integer.parseInt(args[1]));
 						Main.data.saveConfig();
+						Main.logs.getConfig().set(
+								player.getName() + "'s Logs" + ".Raffle_Join" + "." + Main.formatter.format(Main.date)
+										+ ".TransactionID " + (Main.random(1000000) + 1000000),
+								"Joined the raffle with " + args[1] + " Credits. Balance: "
+										+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
+						Main.logs.saveConfig();
 						player.sendMessage(ChatColor.GREEN + "✔ You Have Successfully Joined The Raffle! Bet: "
 								+ ChatColor.AQUA + args[1] + " Credits.");
 						bets.put(player.getName(), Integer.parseInt(args[1]));
@@ -69,7 +75,7 @@ public class Raffle implements CommandExecutor, Runnable {
 			if (args.length == 1 && args[0].equalsIgnoreCase("end")) {
 				if (player.isOp()) {
 					player.sendMessage(ChatColor.GREEN + "You have ended the raffle.");
-					raffle_time = 120;
+					raffle_time = 300;
 					if (!bets.isEmpty()) {
 						for (String key : bets.keySet()) {
 							if ((float) (chances.get(key) - 100) * -1 < Main.random(100)) {
@@ -80,6 +86,12 @@ public class Raffle implements CommandExecutor, Runnable {
 								Main.data.getConfig().set(key + ".Credits",
 										(int) Main.data.getConfig().get(key + ".Credits") + totalValue);
 								Main.data.saveConfig();
+								Main.logs.getConfig()
+										.set(key + "'s Logs" + ".Raffle_Win" + "." + Main.formatter.format(Main.date)
+												+ ".TransactionID " + (Main.random(1000000) + 1000000),
+												"Won raffle for " + totalValue + " Credits. Balance: "
+														+ Main.data.getConfig().get(key + ".Credits") + " Credits.");
+								Main.logs.saveConfig();
 								Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Winner Is: " + ChatColor.AQUA + ""
 										+ ChatColor.BOLD + key + ChatColor.GREEN + " For A Total Of " + ChatColor.AQUA
 										+ "" + ChatColor.BOLD + totalValue + ChatColor.GREEN + " Credits!");
@@ -139,7 +151,7 @@ public class Raffle implements CommandExecutor, Runnable {
 					+ ChatColor.GREEN + " Second.");
 		}
 		if (raffle_time <= 0) {
-			raffle_time = 120;
+			raffle_time = 300;
 			if (!bets.isEmpty()) {
 				for (String key : bets.keySet()) {
 					if ((float) (chances.get(key) - 100) * -1 < Main.random(100)) {
@@ -150,6 +162,12 @@ public class Raffle implements CommandExecutor, Runnable {
 						Main.data.getConfig().set(key + ".Credits",
 								(int) Main.data.getConfig().get(key + ".Credits") + totalValue);
 						Main.data.saveConfig();
+						Main.logs.getConfig()
+								.set(key + "'s Logs" + ".Raffle_Win" + "." + Main.formatter.format(Main.date)
+										+ ".TransactionID " + (Main.random(1000000) + 1000000),
+										"Won raffle for " + totalValue + " Credits. Balance: "
+												+ Main.data.getConfig().get(key + ".Credits") + " Credits.");
+						Main.logs.saveConfig();
 						Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Winner Is: " + ChatColor.AQUA + ""
 								+ ChatColor.BOLD + key + ChatColor.GREEN + " For A Total Of " + ChatColor.AQUA + ""
 								+ ChatColor.BOLD + totalValue + ChatColor.GREEN + " Credits!");

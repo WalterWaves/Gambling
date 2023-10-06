@@ -13,6 +13,7 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -30,12 +31,72 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
-		if (label.equalsIgnoreCase("credits")) {
-			sender.sendMessage(ChatColor.AQUA + "You have " + ChatColor.GREEN
-					+ Main.data.getConfig().get(player.getName() + ".Credits") + ChatColor.AQUA
-					+ " credits available.");
-		}
 		if (label.equalsIgnoreCase("roulette")) {
+			ItemStack item1 = new ItemStack(Material.DIAMOND_SWORD);
+			ItemMeta item1_meta = item1.getItemMeta();
+			item1_meta.setDisplayName("Roulette Sword");
+			item1_meta.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
+			item1_meta.addEnchant(Enchantment.DURABILITY, 3, true);
+			item1_meta.addEnchant(Enchantment.KNOCKBACK, 1, true);
+			item1_meta.addEnchant(Enchantment.FIRE_ASPECT, 1, true);
+			item1.setItemMeta(item1_meta);
+			
+			ItemStack item2 = new ItemStack(Material.DIAMOND_SHOVEL);
+			ItemMeta item2_meta = item2.getItemMeta();
+			item2_meta.setDisplayName("Roulette Shovel");
+			item2_meta.addEnchant(Enchantment.DIG_SPEED, 3, true);
+			item2_meta.addEnchant(Enchantment.DURABILITY, 3, true);
+			item2.setItemMeta(item2_meta);
+			
+			ItemStack item3 = new ItemStack(Material.DIAMOND_AXE);
+			ItemMeta item3_meta = item3.getItemMeta();
+			item3_meta.setDisplayName("Roulette Axe");
+			item3_meta.addEnchant(Enchantment.DIG_SPEED, 3, true);
+			item3_meta.addEnchant(Enchantment.DURABILITY, 3, true);
+			item3.setItemMeta(item3_meta);
+			
+			ItemStack item4 = new ItemStack(Material.NETHERITE_HOE);
+			ItemMeta item4_meta = item4.getItemMeta();
+			item4_meta.setDisplayName("Roulette Hoe");
+			item4_meta.addEnchant(Enchantment.DURABILITY, 3, true);
+			item4.setItemMeta(item4_meta);
+			
+			ItemStack item5 = new ItemStack(Material.DIAMOND_PICKAXE);
+			ItemMeta item5_meta = item5.getItemMeta();
+			item5_meta.setDisplayName("Roulette Pickaxe");
+			item5_meta.addEnchant(Enchantment.DIG_SPEED, 3, true);
+			item5_meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 3, true);
+			item5_meta.addEnchant(Enchantment.DURABILITY, 3, true);
+			item5.setItemMeta(item5_meta);
+			
+			ItemStack item6 = new ItemStack(Material.DIAMOND_HELMET);
+			ItemMeta item6_meta = item6.getItemMeta();
+			item6_meta.setDisplayName("Roulette Helmet");
+			item6_meta.addEnchant(Enchantment.DURABILITY, 3, true);
+			item6_meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
+			item6.setItemMeta(item6_meta);
+			
+			ItemStack item7 = new ItemStack(Material.DIAMOND_CHESTPLATE);
+			ItemMeta item7_meta = item7.getItemMeta();
+			item7_meta.setDisplayName("Roulette Chestplate");
+			item7_meta.addEnchant(Enchantment.DURABILITY, 3, true);
+			item7_meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
+			item7.setItemMeta(item7_meta);
+			
+			ItemStack item8 = new ItemStack(Material.DIAMOND_LEGGINGS);
+			ItemMeta item8_meta = item8.getItemMeta();
+			item8_meta.setDisplayName("Roulette Leggings");
+			item8_meta.addEnchant(Enchantment.DURABILITY, 3, true);
+			item8_meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
+			item8.setItemMeta(item8_meta);
+			
+			ItemStack item9 = new ItemStack(Material.DIAMOND_BOOTS);
+			ItemMeta item9_meta = item9.getItemMeta();
+			item9_meta.setDisplayName("Roulette Boots");
+			item9_meta.addEnchant(Enchantment.DURABILITY, 3, true);
+			item9_meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 3, true);
+			item9.setItemMeta(item9_meta);
+			
 			ItemStack blank_space_black = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
 			ItemStack blank_space_red = new ItemStack(Material.RED_STAINED_GLASS_PANE);
 			ItemStack selected_reward = new ItemStack(Material.HOPPER);
@@ -52,7 +113,7 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 			spin_left_meta.setDisplayName(ChatColor.GREEN + "" + ChatColor.BOLD + "SPIN TO LEFT");
 			spin_right_meta.setDisplayName(ChatColor.GREEN + "" + ChatColor.BOLD + "SPIN TO RIGHT");
 			List<String> spin_lore = new ArrayList<String>();
-			spin_lore.add(ChatColor.GREEN + "Cost: 100 Credits");
+			spin_lore.add(ChatColor.GREEN + "Cost: 5000 Credits");
 			spin_left_meta.setLore(spin_lore);
 			spin_right_meta.setLore(spin_lore);
 			blank_space_black.setItemMeta(blank_space_black_meta);
@@ -71,18 +132,18 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 			inventories.get(player.getName()).setItem(35, spin_right);
 			inventories.get(player.getName()).setItem(18, spin_left);
 			inventories.get(player.getName()).setItem(27, spin_left);
-			inventories.get(player.getName()).setItem(13, new ItemStack(Material.DIAMOND));
-			inventories.get(player.getName()).setItem(12, new ItemStack(Material.EMERALD));
-			inventories.get(player.getName()).setItem(14, new ItemStack(Material.COAL));
-			inventories.get(player.getName()).setItem(24, new ItemStack(Material.REDSTONE));
-			inventories.get(player.getName()).setItem(20, new ItemStack(Material.IRON_INGOT));
-			inventories.get(player.getName()).setItem(33, new ItemStack(Material.LAPIS_LAZULI));
-			inventories.get(player.getName()).setItem(29, new ItemStack(Material.GOLD_INGOT));
-			inventories.get(player.getName()).setItem(38, new ItemStack(Material.QUARTZ));
-			inventories.get(player.getName()).setItem(42, new ItemStack(Material.GOLDEN_APPLE));
+			inventories.get(player.getName()).setItem(13, item1);
+			inventories.get(player.getName()).setItem(12, item2);
+			inventories.get(player.getName()).setItem(14, item3);
+			inventories.get(player.getName()).setItem(24, item4);
+			inventories.get(player.getName()).setItem(20, item5);
+			inventories.get(player.getName()).setItem(33, item6);
+			inventories.get(player.getName()).setItem(29, item7);
+			inventories.get(player.getName()).setItem(38, item8);
+			inventories.get(player.getName()).setItem(42, item9);
 			inventories.get(player.getName()).setItem(48, new ItemStack(Material.ENCHANTED_GOLDEN_APPLE));
-			inventories.get(player.getName()).setItem(49, new ItemStack(Material.TOTEM_OF_UNDYING));
-			inventories.get(player.getName()).setItem(50, new ItemStack(Material.COPPER_INGOT));
+			inventories.get(player.getName()).setItem(49, new ItemStack(Material.NETHERITE_INGOT));
+			inventories.get(player.getName()).setItem(50, new ItemStack(Material.TOTEM_OF_UNDYING));
 			player.openInventory(inventories.get(player.getName()));
 		}
 		return false;
@@ -91,11 +152,6 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 	@Override
 	public void run() {
 		for (Player player : Bukkit.getOnlinePlayers()) {
-			if (Main.data.getConfig().get(player.getName() + ".Credits") == null) {
-				Main.data.getConfig().set(player.getName() + ".Credits", 0);
-				Main.data.saveConfig();
-			}
-
 			if (inventories.get(player.getName()) == null) {
 				inventories.put(player.getName(), Bukkit.createInventory(player, 54,
 						ChatColor.DARK_RED + "" + ChatColor.UNDERLINE + "" + ChatColor.BOLD + "ROULETTE"));
@@ -147,7 +203,8 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 				if (spinTime.get(player.getName()) == 0) {
 					player.playSound(player, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
 					player.playSound(player, Sound.ENTITY_FIREWORK_ROCKET_LARGE_BLAST, 1f, 1f);
-					player.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, player.getLocation().add(0, 1, 0), 250, 0.5, 0.5, 0.5, 0.25);
+					player.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, player.getLocation().add(0, 1, 0), 250,
+							0.5, 0.5, 0.5, 0.25);
 					player.getInventory().addItem(inventories.get(player.getName()).getItem(13));
 					isSpinning.put(player.getName(), 0);
 				}
@@ -181,7 +238,8 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 				if (spinTime.get(player.getName()) == 0) {
 					player.playSound(player, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
 					player.playSound(player, Sound.ENTITY_FIREWORK_ROCKET_LARGE_BLAST, 1f, 1f);
-					player.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, player.getLocation().add(0, 1, 0), 250, 0.5, 0.5, 0.5, 0.25);
+					player.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, player.getLocation().add(0, 1, 0), 250,
+							0.5, 0.5, 0.5, 0.25);
 					player.getInventory().addItem(inventories.get(player.getName()).getItem(13));
 					isSpinning.put(player.getName(), 0);
 				}
@@ -195,10 +253,16 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 		if (event.getCurrentItem() != null && isSpinning.get(player.getName()) == 0
 				&& event.getCurrentItem().getType() == Material.EMERALD_BLOCK && event.getCurrentItem().getItemMeta()
 						.getDisplayName().equals(ChatColor.GREEN + "" + ChatColor.BOLD + "SPIN TO LEFT")) {
-			if ((int) Main.data.getConfig().get(player.getName() + ".Credits") >= 100) {
+			if ((int) Main.data.getConfig().get(player.getName() + ".Credits") >= 5000) {
 				Main.data.getConfig().set(player.getName() + ".Credits",
-						(int) Main.data.getConfig().get(player.getName() + ".Credits") - 100);
+						(int) Main.data.getConfig().get(player.getName() + ".Credits") - 5000);
 				Main.data.saveConfig();
+				Main.logs.getConfig()
+						.set(player.getName() + "'s Logs" + ".Roulette" + "." + Main.formatter.format(Main.date)
+								+ ".TransactionID " + (Main.random(1000000) + 1000000),
+								"Spun for 100 Credits. Balance: "
+										+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
+				Main.logs.saveConfig();
 				player.playSound(player, Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1f, 1f);
 				player.sendMessage(ChatColor.GREEN + "✔ Purchase Successful! New Balance: "
 						+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
@@ -212,10 +276,16 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 		if (event.getCurrentItem() != null && isSpinning.get(player.getName()) == 0
 				&& event.getCurrentItem().getType() == Material.EMERALD_BLOCK && event.getCurrentItem().getItemMeta()
 						.getDisplayName().equals(ChatColor.GREEN + "" + ChatColor.BOLD + "SPIN TO RIGHT")) {
-			if ((int) Main.data.getConfig().get(player.getName() + ".Credits") >= 100) {
+			if ((int) Main.data.getConfig().get(player.getName() + ".Credits") >= 5000) {
 				Main.data.getConfig().set(player.getName() + ".Credits",
-						(int) Main.data.getConfig().get(player.getName() + ".Credits") - 100);
+						(int) Main.data.getConfig().get(player.getName() + ".Credits") - 5000);
 				Main.data.saveConfig();
+				Main.logs.getConfig()
+						.set(player.getName() + "'s Logs" + ".Roulette" + "." + Main.formatter.format(Main.date)
+								+ ".TransactionID " + (Main.random(1000000) + 1000000),
+								"Spun for 100 Credits. Balance: "
+										+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
+				Main.logs.saveConfig();
 				player.playSound(player, Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1f, 1f);
 				player.sendMessage(ChatColor.GREEN + "✔ Purchase Successful! New Balance: "
 						+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
@@ -227,8 +297,8 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 			}
 		}
 		for (ItemStack item : event.getInventory().getContents()) {
-			if (event.getCurrentItem() != null && item.getType() == Material.HOPPER && item.getItemMeta()
-					.getDisplayName().equals(ChatColor.GOLD + "" + ChatColor.BOLD + "YOUR PRIZE")) {
+			if (event.getCurrentItem() != null && item.getType() == Material.BLACK_STAINED_GLASS_PANE
+					&& item.getItemMeta().getDisplayName().equals(" ")) {
 				event.setCancelled(true);
 			}
 		}

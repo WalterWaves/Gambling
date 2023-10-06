@@ -13,11 +13,18 @@ public class Double implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
 		if (label.equalsIgnoreCase("double")) {
-			if (args.length == 2 && Integer.parseInt(args[0]) > 0 && (args[1].equalsIgnoreCase("under") || args[1].equalsIgnoreCase("over"))) {
+			if (args.length == 2 && Integer.parseInt(args[0]) > 0
+					&& (args[1].equalsIgnoreCase("under") || args[1].equalsIgnoreCase("over"))) {
 				if ((int) Main.data.getConfig().get(player.getName() + ".Credits") >= Integer.parseInt(args[0])) {
 					Main.data.getConfig().set(player.getName() + ".Credits",
 							(int) Main.data.getConfig().get(player.getName() + ".Credits") - Integer.parseInt(args[0]));
 					Main.data.saveConfig();
+					Main.logs.getConfig()
+							.set(player.getName() + "'s Logs" + ".Coinflip" + "." + Main.formatter.format(Main.date)
+									+ ".TransactionID " + (Main.random(1000000) + 1000000),
+									"Coinflipped for " + args[0] + " Credits. Balance: "
+											+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
+					Main.logs.saveConfig();
 					player.sendMessage(ChatColor.GREEN + "✔ Purchase Successful! Bet: " + args[0] + " Credits.");
 					if (args[1].equalsIgnoreCase("under")) {
 						int random = Main.random(100);
@@ -26,12 +33,23 @@ public class Double implements CommandExecutor {
 									(int) Main.data.getConfig().get(player.getName() + ".Credits")
 											+ Integer.parseInt(args[0]) * 2);
 							Main.data.saveConfig();
+							Main.logs.getConfig()
+									.set(player.getName() + "'s Logs" + ".Coinflip_Win" + "."
+											+ Main.formatter.format(Main.date) + ".TransactionID "
+											+ (Main.random(1000000) + 1000000),
+											"Coinflipped and won " + (Integer.parseInt(args[0]) * 2)
+													+ " Credits. Balance: "
+													+ Main.data.getConfig().get(player.getName() + ".Credits")
+													+ " Credits.");
+							Main.logs.saveConfig();
 							player.sendMessage(ChatColor.GREEN + "✔ You Won! New Balance: "
-									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits. Roll: " + random + ".");
+									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits. Roll: "
+									+ random + ".");
 							player.playSound(player, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
 						} else {
 							player.sendMessage(ChatColor.RED + "❌ You Lost! Balance: "
-									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits. Roll: " + random + ".");
+									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits. Roll: "
+									+ random + ".");
 							player.playSound(player, Sound.BLOCK_ANVIL_DESTROY, 1f, 1f);
 						}
 					}
@@ -42,12 +60,23 @@ public class Double implements CommandExecutor {
 									(int) Main.data.getConfig().get(player.getName() + ".Credits")
 											+ Integer.parseInt(args[0]) * 2);
 							Main.data.saveConfig();
+							Main.logs.getConfig()
+									.set(player.getName() + "'s Logs" + ".Coinflip_Win" + "."
+											+ Main.formatter.format(Main.date) + ".TransactionID "
+											+ (Main.random(1000000) + 1000000),
+											"Coinflipped and won " + (Integer.parseInt(args[0]) * 2)
+													+ " Credits. Balance: "
+													+ Main.data.getConfig().get(player.getName() + ".Credits")
+													+ " Credits.");
+							Main.logs.saveConfig();
 							player.sendMessage(ChatColor.GREEN + "✔ You Won! New Balance: "
-									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits. Roll: " + random + ".");
+									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits. Roll: "
+									+ random + ".");
 							player.playSound(player, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
 						} else {
 							player.sendMessage(ChatColor.RED + "❌ You Lost! Balance: "
-									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits. Roll: " + random + ".");
+									+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits. Roll: "
+									+ random + ".");
 							player.playSound(player, Sound.BLOCK_ANVIL_DESTROY, 1f, 1f);
 						}
 					}

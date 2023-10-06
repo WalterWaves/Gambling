@@ -18,6 +18,12 @@ public class Dice implements CommandExecutor {
 					Main.data.getConfig().set(player.getName() + ".Credits",
 							(int) Main.data.getConfig().get(player.getName() + ".Credits") - Integer.parseInt(args[0]));
 					Main.data.saveConfig();
+					Main.logs.getConfig()
+							.set(player.getName() + "'s Logs" + ".Dice_Roll" + "." + Main.formatter.format(Main.date)
+									+ ".TransactionID " + (Main.random(1000000) + 1000000),
+									"Rolled the dice for " + args[0] + " Credits. Balance: "
+											+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
+					Main.logs.saveConfig();
 					player.sendMessage(ChatColor.GREEN + "✔ Purchase Successful! Bet: " + args[0] + " Credits.");
 					int random = 1 + Main.random(6);
 					if (random == 1) {
@@ -43,6 +49,12 @@ public class Dice implements CommandExecutor {
 								(int) Main.data.getConfig().get(player.getName() + ".Credits")
 										+ Integer.parseInt(args[0]) * 6);
 						Main.data.saveConfig();
+						Main.logs.getConfig().set(
+								player.getName() + "'s Logs" + ".Dice_Win" + "." + Main.formatter.format(Main.date)
+										+ ".TransactionID " + (Main.random(1000000) + 1000000),
+								"Rolled the dice and won " + (Integer.parseInt(args[0]) * 6) + " Credits. Balance: "
+										+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
+						Main.logs.saveConfig();
 						player.sendMessage(ChatColor.GREEN + "✔ You Won! New Balance: "
 								+ Main.data.getConfig().get(player.getName() + ".Credits") + " Credits.");
 						player.playSound(player, Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
