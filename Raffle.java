@@ -123,7 +123,7 @@ public class Raffle implements CommandExecutor, Runnable {
 
 	@Override
 	public void run() {
-		if (raffle_time == 119) {
+		if (raffle_time == 299) {
 			Bukkit.broadcastMessage(ChatColor.GREEN + "A New Raffle Has Started.");
 		}
 		if (raffle_time == 60) {

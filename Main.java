@@ -41,6 +41,7 @@ public class Main extends JavaPlugin {
 		getCommand("double").setExecutor(new Double());
 		getCommand("raffle").setExecutor(new Raffle());
 		getCommand("shop").setExecutor(new Shop());
+		getCommand("pay").setExecutor(new Pay());
 		getServer().getPluginManager().registerEvents(new Roulette(), this);
 		getServer().getPluginManager().registerEvents(new Shop(), this);
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Roulette(), 0, 1);
