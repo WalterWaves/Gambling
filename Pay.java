@@ -24,7 +24,7 @@ public class Pay implements CommandExecutor {
 				if ((int) Main.data.getConfig().get(player.getName() + ".Credits") >= Integer.parseInt(args[0])
 						&& Integer.parseInt(args[0]) > 0) {
 					if (players.contains(args[1])) {
-						if (player == Bukkit.getPlayerExact(args[1])) {
+						if (player != Bukkit.getPlayerExact(args[1])) {
 							Main.data.getConfig().set(player.getName() + ".Credits",
 									(int) Main.data.getConfig().get(player.getName() + ".Credits")
 											- Integer.parseInt(args[0]));
