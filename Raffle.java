@@ -123,32 +123,34 @@ public class Raffle implements CommandExecutor, Runnable {
 
 	@Override
 	public void run() {
-		if (raffle_time == 299) {
-			Bukkit.broadcastMessage(ChatColor.GREEN + "A New Raffle Has Started.");
-		}
-		if (raffle_time == 60) {
-			Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Is Ending In " + ChatColor.AQUA + "60"
-					+ ChatColor.GREEN + " Seconds.");
-		}
-		if (raffle_time == 30) {
-			Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Is Ending In " + ChatColor.AQUA + "30"
-					+ ChatColor.GREEN + " Seconds.");
-		}
-		if (raffle_time == 10) {
-			Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Is Ending In " + ChatColor.AQUA + "10"
-					+ ChatColor.GREEN + " Seconds.");
-		}
-		if (raffle_time == 3) {
-			Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Is Ending In " + ChatColor.AQUA + raffle_time
-					+ ChatColor.GREEN + " Seconds.");
-		}
-		if (raffle_time == 2) {
-			Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Is Ending In " + ChatColor.AQUA + raffle_time
-					+ ChatColor.GREEN + " Seconds.");
-		}
-		if (raffle_time == 1) {
-			Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Is Ending In " + ChatColor.AQUA + raffle_time
-					+ ChatColor.GREEN + " Second.");
+		if (!bets.isEmpty()) {
+			if (raffle_time == 299) {
+				Bukkit.broadcastMessage(ChatColor.GREEN + "A New Raffle Has Started.");
+			}
+			if (raffle_time == 60) {
+				Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Is Ending In " + ChatColor.AQUA + "60"
+						+ ChatColor.GREEN + " Seconds.");
+			}
+			if (raffle_time == 30) {
+				Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Is Ending In " + ChatColor.AQUA + "30"
+						+ ChatColor.GREEN + " Seconds.");
+			}
+			if (raffle_time == 10) {
+				Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Is Ending In " + ChatColor.AQUA + "10"
+						+ ChatColor.GREEN + " Seconds.");
+			}
+			if (raffle_time == 3) {
+				Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Is Ending In " + ChatColor.AQUA + raffle_time
+						+ ChatColor.GREEN + " Seconds.");
+			}
+			if (raffle_time == 2) {
+				Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Is Ending In " + ChatColor.AQUA + raffle_time
+						+ ChatColor.GREEN + " Seconds.");
+			}
+			if (raffle_time == 1) {
+				Bukkit.broadcastMessage(ChatColor.GREEN + "The Raffle Is Ending In " + ChatColor.AQUA + raffle_time
+						+ ChatColor.GREEN + " Second.");
+			}
 		}
 		if (raffle_time <= 0) {
 			raffle_time = 300;
@@ -185,8 +187,6 @@ public class Raffle implements CommandExecutor, Runnable {
 						break;
 					}
 				}
-			} else {
-				Bukkit.broadcastMessage(ChatColor.RED + "Nobody Participated In The Current Raffle.");
 			}
 		}
 		raffle_time--;

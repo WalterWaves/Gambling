@@ -297,7 +297,7 @@ public class Roulette implements CommandExecutor, Listener, Runnable {
 			}
 		}
 		for (ItemStack item : event.getInventory().getContents()) {
-			if (event.getCurrentItem() != null && item.getType() == Material.BLACK_STAINED_GLASS_PANE
+			if (item != null && event.getCurrentItem() != null && item.getType() == Material.BLACK_STAINED_GLASS_PANE
 					&& item.getItemMeta().getDisplayName().equals(" ")) {
 				event.setCancelled(true);
 			}

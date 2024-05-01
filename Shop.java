@@ -73,7 +73,7 @@ public class Shop implements CommandExecutor, Listener {
 		}
 
 		for (ItemStack search : event.getInventory().getContents()) {
-			if (search.getType() == Material.BARRIER) {
+			if (search != null && search.getType() == Material.BARRIER) {
 				ItemStack foundItem = search;
 				if (foundItem.getItemMeta().getDisplayName()
 						.equals(ChatColor.RED + "" + ChatColor.BOLD + "BACK TO CATEGORIES")) {
